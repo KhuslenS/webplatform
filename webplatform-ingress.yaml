@@ -1,0 +1,29 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  annotations:
+    certmanager.k8s.io/cluster-issuer: letsencrypt-fuchicorp-prod
+    kubernetes.io/ingress.class: nginx
+  creationTimestamp: "2019-09-12T03:34:17Z"
+  generation: 1
+  name: ingress-webplaform
+  namespace: dev
+  resourceVersion: "3744113"
+  selfLink: /apis/extensions/v1beta1/namespaces/dev/ingresses/ingress-webplaform
+  uid: 32ed6607-d50e-11e9-9007-42010a8001b4
+spec:
+  rules:
+  - host: dev.academy.fuchicorp.com
+    http:
+      paths:
+      - backend:
+          serviceName: webplatform-service
+          servicePort: 7101
+  tls:
+  - hosts:
+    - dev.academy.fuchicorp.com
+    secretName: letsencrypt-sec-webplatform-prod
+status:
+  loadBalancer:
+    ingress:
+    - ip: 130.211.207.114
